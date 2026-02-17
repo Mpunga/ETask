@@ -1,0 +1,127 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(30, 144, 255, 0.3);
+    padding: 16px 20px;
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.3), rgba(26, 58, 82, 0.2));
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+.container:hover {
+    transform: translateX(4px);
+    border-color: rgba(30, 144, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.2);
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.4), rgba(26, 58, 82, 0.3));
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.default {
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.4), rgba(26, 58, 82, 0.3));
+    border-color: rgba(30, 144, 255, 0.2);
+}
+
+.default:hover {
+    border-color: rgba(30, 144, 255, 0.4);
+}
+
+.success {
+    background: linear-gradient(135deg, rgba(70, 130, 180, 0.1), rgba(100, 149, 237, 0.08));
+    border-color: rgba(30, 144, 255, 0.4);
+}
+
+.success:hover {
+    border-color: rgba(30, 144, 255, 0.6);
+}
+
+.id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.idDefault {
+    background: linear-gradient(135deg, rgba(30, 144, 255, 0.3), rgba(30, 144, 255, 0.15));
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(30, 144, 255, 0.25);
+}
+
+.idSuccess {
+    background: linear-gradient(135deg, rgba(30, 144, 255, 0.2), rgba(30, 144, 255, 0.1));
+    color: #ffffff;
+}
+
+.contentDefault {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+    flex: 1;
+}
+
+.contentSuccess {
+    color: rgba(84, 255, 14, 0.5);
+    text-decoration: line-through;
+    flex: 1;
+}
+
+.deleteIcon {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 100, 100, 0.8);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.dateDisplay {
+    font-size: 0.75rem;
+    color: rgba(30, 144, 255, 0.6);
+    font-weight: 500;
+}
+
+.metaInfo {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    margin-top: 3px;
+}
+
+.timeDisplay {
+    color: rgba(255, 200, 100, 0.7);
+    font-weight: 500;
+}
+
+.durationBadge {
+    margin-top: 6px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, rgba(30, 144, 255, 0.15), rgba(65, 105, 225, 0.1));
+    border-left: 3px solid #1e90ff;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: rgba(30, 200, 150, 0.9);
+    font-weight: 600;
+    animation: slideIn 0.3s ease-out;
+}
