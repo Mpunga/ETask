@@ -1,7 +1,8 @@
 // Utility pour gérer le localStorage de manière sécurisée
 
 const STORAGE_KEYS = {
-  TASKS: 'e_task_list',
+  TASKS_COMPLETED: 'e_task_list_completed',
+  TASKS_PENDING: 'e_task_list_pending',
   FILTER: 'e_task_filter',
   SEARCH: 'e_task_search',
   THEME: 'e_task_theme',
@@ -11,8 +12,11 @@ export const storageService = {
   // ==== TÂCHES ====
   getTasks: () => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEYS.TASKS);
-      return stored ? JSON.parse(stored) : [];
+      const completed = localStorage.getItem(STORAGE_KEYS.TASKS_COMPLETED);
+      const pending = localStorage.getItem(STORAGE_KEYS.TASKS_PENDING);
+      const completedTasks = completed ? JSON.parse(completed) : [];
+      const pendingTasks = pending ? JSON.parse(pending) : [];
+      return [...pendingTasks, ...completedTasks];
     } catch (error) {
       console.error('Erreur lors de la lecture des tâches:', error);
       return [];
@@ -21,7 +25,10 @@ export const storageService = {
 
   setTasks: (tasks) => {
     try {
-      localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(tasks));
+      const completedTasks = tasks.filter(t => t.completed);
+      const pendingTasks = tasks.filter(t => !t.completed);
+      localStorage.setItem(STORAGE_KEYS.TASKS_COMPLETED, JSON.stringify(completedTasks));
+      localStorage.setItem(STORAGE_KEYS.TASKS_PENDING, JSON.stringify(pendingTasks));
       return true;
     } catch (error) {
       console.error('Erreur lors de la sauvegarde des tâches:', error);

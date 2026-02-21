@@ -91,7 +91,7 @@ const TaskContainer = () => {
   const editTask = (id, completedValue) => {
     const task = taskList.find(t => t.id === id);
     const action = completedValue ? 'terminée' : 'en cours';
-    
+
     setModal({
       isOpen: true,
       title: '✅ Confirmer le changement',
@@ -100,18 +100,20 @@ const TaskContainer = () => {
       cancelText: 'Annuler',
       isDanger: false,
       onConfirm: () => {
-        setTaskList(
-          taskList.map((t) => {
-            if (t.id === id) {
-              const updatedTask = { ...t, completed: completedValue };
-              if (completedValue && !t.completedAt) {
-                updatedTask.completedAt = new Date().toISOString();
-              }
-              return updatedTask;
+        const updatedTasks = taskList.map((t) => {
+          if (t.id === id) {
+            const updatedTask = { ...t, completed: completedValue };
+            if (completedValue && !t.completedAt) {
+              updatedTask.completedAt = new Date().toISOString();
+            } else if (!completedValue) {
+              delete updatedTask.completedAt;
             }
-            return t;
-          }) 
-        );
+            return updatedTask;
+          }
+          return t;
+        });
+        setTaskList(updatedTasks);
+        storageService.setTasks(updatedTasks); // Assure la persistance immédiate
         setModal({ ...modal, isOpen: false });
       },
     });
